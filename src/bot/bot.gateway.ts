@@ -7,7 +7,7 @@ import {
   GuildBasedChannel,
   TextChannel,
 } from 'discord.js'
-import { BotService } from './bot.service'
+import { BotService, GuildCreateDto } from './bot.service'
 
 @Injectable()
 export class BotGateway {
@@ -28,18 +28,34 @@ export class BotGateway {
   @On('guildCreate')
   onGuildCreate(guild: Guild) {
     const { id: guildId, name: guildName } = guild
-    // const textChannels: Array<TextChannel> = this.getGuildTextChannels(guild)
+    this.logger.log(
+      `guildCreate event has been triggered for ${guildName}(ID: ${guildId}).`,
+    )
 
-    this.logger.log(`${guildName}(ID: ${guildId}) has been added to the bot.`)
+    const textChannel: TextChannel = this.getGuildTextChannels(guild)[0]
+    const guildCreateDto: GuildCreateDto = {
+      guildId: guildId,
+      guildName: guildName,
+      textChannelId: textChannel.id,
+      textChannelName: textChannel.name,
+    }
+
+    this.botService.handleGuildCreate(guildCreateDto)
   }
 
   @On('guildDelete')
   onGuildDelete(guild: Guild) {
     const { id: guildId, name: guildName } = guild
-
-    this.logger.error(
-      `${guildName}(ID: ${guildId}) has been removed from the bot.`,
+    this.logger.log(
+      `guildDelete event has been triggered for ${guildName}(ID: ${guildId}).`,
     )
+
+    const guildDeleteDto = {
+      guildId: guildId,
+      guildName: guildName,
+    }
+
+    this.botService.handleGuildDelete(guildDeleteDto)
   }
 
   private getGuildTextChannels(guild: Guild): Array<TextChannel> {
