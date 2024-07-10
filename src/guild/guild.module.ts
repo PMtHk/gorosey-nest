@@ -9,18 +9,9 @@ import { ScheduleService } from './schedule.service'
 @Module({
   imports: [
     MongooseModule.forFeature([
-      {
-        name: Guild.name,
-        schema: GuildSchema,
-      },
-      {
-        name: Schedule.name,
-        schema: ScheduleSchema,
-      },
-      {
-        name: Watchlist.name,
-        schema: WatchlistSchema,
-      },
+      { name: Guild.name, schema: GuildSchema },
+      { name: Schedule.name, schema: ScheduleSchema },
+      { name: Watchlist.name, schema: WatchlistSchema },
     ]),
   ],
 

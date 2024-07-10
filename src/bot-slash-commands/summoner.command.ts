@@ -1,12 +1,9 @@
 import { SlashCommandPipe } from '@discord-nestjs/common'
 import { Command, Handler, IA } from '@discord-nestjs/core'
 import { Injectable } from '@nestjs/common'
-import {
-  InteractionReplyOptions,
-  EmbedBuilder,
-  CommandInteraction,
-} from 'discord.js'
+import { InteractionReplyOptions, EmbedBuilder } from 'discord.js'
 import { SummonerDto } from './summoner.dto'
+import { RiotApiService } from 'src/riot-api/riot-api.service'
 
 @Command({
   name: 'summoner',
@@ -21,16 +18,23 @@ import { SummonerDto } from './summoner.dto'
 })
 @Injectable()
 export class SummonerCommand {
+  constructor(private readonly riotApiService: RiotApiService) {}
+
   @Handler()
-  onSummoner(
+  async onSummoner(
     @IA(SlashCommandPipe) summonerDto: SummonerDto,
-    @IA() interaction: CommandInteraction,
-  ): InteractionReplyOptions {
-    let [gameName, tagLine = 'KR1'] = summonerDto.summoner.split('#')
+  ): Promise<InteractionReplyOptions> {
+    const [_gameName, _tagLine = 'KR1'] = summonerDto.summoner.split('#')
 
-    console.log(interaction)
+    const {
+      puuid: riotPuuid,
+      gameName,
+      tagLine,
+    } = await this.riotApiService.getAccount(_gameName, _tagLine)
 
-    const embed = new EmbedBuilder().setTitle('test')
+    const embed = new EmbedBuilder()
+      .setTitle(`${gameName}#${tagLine}`)
+      .setDescription(riotPuuid)
 
     return {
       embeds: [embed],
