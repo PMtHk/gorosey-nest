@@ -26,7 +26,7 @@ export class BotService {
   ) {}
 
   async handleGuildCreate(guildCreateDto: GuildCreateDto) {
-    const createdGuild = await this.guildService.create(
+    await this.guildService.create(
       new Guild(
         guildCreateDto.guildId,
         guildCreateDto.guildName,
@@ -34,8 +34,7 @@ export class BotService {
         guildCreateDto.textChannelName,
       ),
     )
-
-    await this.scheduleService.create(new Schedule(createdGuild.guildId, 0))
+    await this.scheduleService.create(new Schedule(guildCreateDto.guildId, 0))
 
     this.logger.log(
       `Guild ${guildCreateDto.guildName}(ID: ${guildCreateDto.guildId}) has been initiated.`,
