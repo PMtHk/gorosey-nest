@@ -1,9 +1,27 @@
 import { SlashCommandPipe } from '@discord-nestjs/common'
 import { Command, Handler, IA } from '@discord-nestjs/core'
 import { Injectable } from '@nestjs/common'
-import { InteractionReplyOptions, EmbedBuilder } from 'discord.js'
+import {
+  InteractionReplyOptions,
+  EmbedBuilder,
+  Colors,
+  Locale,
+  Interaction,
+} from 'discord.js'
 import { SummonerDto } from './summoner.dto'
-import { RiotApiService } from 'src/riot-api/riot-api.service'
+import { AccountRegion, RiotApiService } from 'src/riot-api/riot-api.service'
+
+const SummonerNotFoundEmbed = {
+  kr: new EmbedBuilder()
+    .setTitle('해당하는 소환사를 찾을 수 없습니다.')
+    .setDescription('소환사명을 다시 확인해주세요.')
+    .setColor(Colors.Orange),
+
+  'en-US': new EmbedBuilder()
+    .setTitle('Summoner not found.')
+    .setDescription('Please check the summoner name again.')
+    .setColor(Colors.Orange),
+}
 
 @Command({
   name: 'summoner',
@@ -23,18 +41,27 @@ export class SummonerCommand {
   @Handler()
   async onSummoner(
     @IA(SlashCommandPipe) summonerDto: SummonerDto,
+    @IA() interaction: Interaction,
   ): Promise<InteractionReplyOptions> {
+    const locale = interaction.locale as Locale
     const [_gameName, _tagLine = 'KR1'] = summonerDto.summoner.split('#')
 
-    const {
-      puuid: riotPuuid,
-      gameName,
-      tagLine,
-    } = await this.riotApiService.getAccount(_gameName, _tagLine)
+    const account = await this.riotApiService.getAccount(
+      _gameName,
+      _tagLine,
+      AccountRegion.ASIA,
+    )
+
+    if (!account)
+      return {
+        embeds: [SummonerNotFoundEmbed[locale]],
+      }
+
+    const { puuid: riotPuuid, gameName, tagLine } = account
 
     const embed = new EmbedBuilder()
       .setTitle(`${gameName}#${tagLine}`)
-      .setDescription(riotPuuid)
+      .setDescription(`PUUID: ${riotPuuid}`)
 
     return {
       embeds: [embed],

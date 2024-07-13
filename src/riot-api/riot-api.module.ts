@@ -1,12 +1,12 @@
-import { HttpModule } from '@nestjs/axios'
 import { Module } from '@nestjs/common'
 import { RiotApiService } from './riot-api.service'
+import { HttpModule } from '@nestjs/axios'
+import { RiotApiHttpConfig } from './riot-api-http-config.service'
 
 @Module({
   imports: [
-    HttpModule.register({
-      timeout: 3000,
-      maxRedirects: 3,
+    HttpModule.registerAsync({
+      useClass: RiotApiHttpConfig,
     }),
   ],
 
