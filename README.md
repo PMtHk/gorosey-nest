@@ -7,18 +7,10 @@
 <br/>
 
 <div align="center">
-  <a href="https://nestjs.com/">
-<img src="https://img.shields.io/badge/NestJS-black?style=for-the-badge&logo=nestjs&logoColor=E0234E" alt="nestjs" />
-  </a>
-  <a href="https://discord.js.org/">
-<img src="https://img.shields.io/badge/Discord.js-black?style=for-the-badge&logo=discord&logoColor=5865F2" alt="discord.js" />
-  </a>
-  <a href="https://developer.riotgames.com/">
-<img src="https://img.shields.io/badge/riotgames-black?style=for-the-badge&logo=riotgames&logoColor=EB0029" alt="riotgames" />
-  </a>
-  <a href="https://www.typescriptlang.org/">
-<img src="https://img.shields.io/badge/typescript-black?style=for-the-badge&logo=typescript&logoColor=3178C6" alt="typescript" />
-  </a>
+  <a href="https://nestjs.com/"><img src="https://img.shields.io/badge/NestJS-black?style=for-the-badge&logo=nestjs&logoColor=E0234E" alt="nestjs" /></a>
+  <a href="https://discord.js.org/"><img src="https://img.shields.io/badge/Discord.js-black?style=for-the-badge&logo=discord&logoColor=5865F2" alt="discord.js" /></a>
+  <a href="https://developer.riotgames.com/"><img src="https://img.shields.io/badge/riotgames-black?style=for-the-badge&logo=riotgames&logoColor=EB0029" alt="riotgames" /></a>
+  <a href="https://www.typescriptlang.org/"><img src="https://img.shields.io/badge/typescript-black?style=for-the-badge&logo=typescript&logoColor=3178C6" alt="typescript" /></a>
 </div>
 
 <br/>
