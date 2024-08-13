@@ -1,73 +1,34 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="200" alt="Nest Logo" /></a>
-</p>
+# 고로시롤 | Gorosey-LoL
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+<img src="./assets/gorosey_intro.png" alt="gorosey_intro_image" width="100%" />
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://coveralls.io/github/nestjs/nest?branch=master" target="_blank"><img src="https://coveralls.io/repos/github/nestjs/nest/badge.svg?branch=master#9" alt="Coverage" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+[고로시롤](https://koreanbots.dev/bots/1232212821530509332)은 디스코드 서버에서 지정된 시간에 자동으로 소환사의 전적을 갱신해 알려주는 디스코드 봇 서비스 입니다.  
+기존에는 [Express](https://expressjs.com/) 앱으로 작성되었으나, 현재 기능 추가와 동시에 [Nest.js](https://nestjs.com/) 로 마이그레이션을 진행하고 있습니다.
 
-## Description
+[기존 Repository](https://github.com/PMtHk/gorosey-lol)
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+## Nest.js 를 선택한 이유
 
-## Installation
+### Express 기반
 
-```bash
-$ npm install
-```
+기존 고로시롤 서비스는 `Express` 앱으로 작성되어 있습니다.  
+`Nest.js` 는 내부적으로 `Express` 를 사용하면서 추가적인 기능을 제공하기 때문에 쉽게 마이그레이션할 수 있을 것이라 생각했습니다.
 
-## Running the app
+### 모듈화 아키텍처
 
-```bash
-# development
-$ npm run start
+기존 고로시롤을 `Express` 로 개발하면서, 컨트롤러(실제로는 [Discord.js](https://discord.js.org/) - SlashCommand), 서비스, 레포지토리의 계층적인 구조를 설정하며 많은 시행착오를 겪었습니다.  
+이 과정에서 체계적인 구조의 중요성을 실감하게 되었고, **Nest.js의 모듈화된 아키텍처**가 이러한 문제를 해결해 줄 것이라 생각했습니다.
 
-# watch mode
-$ npm run start:dev
+### 의존성 주입 및 테스트 작성
 
-# production mode
-$ npm run start:prod
-```
+`Nest.js` 는 강력한 DI 시스템을 제공하고 있습니다.  
+Nest.js 는 모듈에 `providers` 라는 배열에 의존성을 제공할 클래스(w. `@Injectable()`)를 추가하면, DI 컨테이너가 이를 인스턴스와 합니다.  
+이를 통해 간단히 객체간의 결합도를 줄일 수 있고, 각 프로바이더를 독립적으로 테스트할 수 있게 됩니다.  
+`Nest.js` 의 더 직관적으로 의존관계를 파악할 수 있는 장점, 자동으로 인스턴스를 관리해주는 점 그리고 단위 테스트의 장점을 종합해 선택했습니다.
 
-## Test
+> 기존 고로시롤에서는 `typedi` 를 활용했습니다.
 
-```bash
-# unit tests
-$ npm run test
+### 데코레이터 기반
 
-# e2e tests
-$ npm run test:e2e
-
-# test coverage
-$ npm run test:cov
-```
-
-## Support
-
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
-
-## Stay in touch
-
-- Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
-
-## License
-
-Nest is [MIT licensed](LICENSE).
+`Nest.js` 는 데코레이터를 활용해 앱 내의 각 구성 요소를 선언적으로 정의할 수 있습니다. 비록 스프링 프레임워크를 직접 사용해본 적은 없지만, 스프링의 데코레이터 기반 개발 방식의 가독성과 직관성을 적용해보고 싶었습니다.  
+`Nest.js` 의 데코레이터 기반 개발 방식이 앱 내의 모듈, 프로바이더 등의 역할을 명확히 적용하고 가독성을 높일 것이라 기대합니다.
