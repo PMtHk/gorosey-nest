@@ -1,15 +1,24 @@
 # 고로시롤 | Gorosey-LoL
 
-<img src="./assets/gorosey_intro.png" alt="gorosey_intro_image" width="100%" />
+<a href="https://koreanbots.dev/bots/1232212821530509332">
+  <img src="./assets/gorosey_intro.png" alt="gorosey_intro_image" width="100%" />
+</a>
 
 <br/>
 
 <div align="center">
-  <img src="https://img.shields.io/badge/NestJS-black?style=for-the-badge&logo=nestjs&logoColor=E0234E" alt="nestjs" />
-  <img src="https://img.shields.io/badge/Discord.js-black?style=for-the-badge&logo=discord&logoColor=5865F2" alt="discord.js" />
-  <img src="https://img.shields.io/badge/riotgames-black?style=for-the-badge&logo=riotgames&logoColor=EB0029" alt="riotgames" />
-  <img src="https://img.shields.io/badge/typescript-black?style=for-the-badge&logo=typescript&logoColor=3178C6" alt="typescript" />
-
+  <a href="https://nestjs.com/">
+    <img src="https://img.shields.io/badge/NestJS-black?style=for-the-badge&logo=nestjs&logoColor=E0234E" alt="nestjs" />
+  </a>
+  <a href="https://discord.js.org/">
+    <img src="https://img.shields.io/badge/Discord.js-black?style=for-the-badge&logo=discord&logoColor=5865F2" alt="discord.js" />
+  </a>
+  <a href="https://developer.riotgames.com/">
+    <img src="https://img.shields.io/badge/riotgames-black?style=for-the-badge&logo=riotgames&logoColor=EB0029" alt="riotgames" />
+  </a>
+  <a href="https://www.typescriptlang.org/">
+    <img src="https://img.shields.io/badge/typescript-black?style=for-the-badge&logo=typescript&logoColor=3178C6" alt="typescript" />
+  </a>
 </div>
 
 <br/>
