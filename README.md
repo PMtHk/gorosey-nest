@@ -2,6 +2,18 @@
 
 <img src="./assets/gorosey_intro.png" alt="gorosey_intro_image" width="100%" />
 
+<br/>
+
+<div align="center">
+  <img src="https://img.shields.io/badge/NestJS-black?style=for-the-badge&logo=nestjs&logoColor=E0234E" alt="nestjs" />
+  <img src="https://img.shields.io/badge/Discord.js-black?style=for-the-badge&logo=discord&logoColor=5865F2" alt="discord.js" />
+  <img src="https://img.shields.io/badge/riotgames-black?style=for-the-badge&logo=riotgames&logoColor=EB0029" alt="riotgames" />
+  <img src="https://img.shields.io/badge/typescript-black?style=for-the-badge&logo=typescript&logoColor=3178C6" alt="typescript" />
+
+</div>
+
+<br/>
+
 [고로시롤](https://koreanbots.dev/bots/1232212821530509332)은 디스코드 서버에서 지정된 시간에 자동으로 소환사의 전적을 갱신해 알려주는 디스코드 봇 서비스 입니다.  
 기존에는 [Express](https://expressjs.com/) 앱으로 작성되었으나, 현재 기능 추가와 동시에 [Nest.js](https://nestjs.com/) 로 마이그레이션을 진행하고 있습니다.
 
