@@ -23,6 +23,9 @@ export class Guild {
   @Prop()
   lastUpdatedAt: Date
 
+  @Prop()
+  guildCreatedAt: Date
+
   constructor(
     guildId: string,
     guildName: string,
@@ -34,6 +37,7 @@ export class Guild {
     this.textChannelId = textChannelId
     this.textChannelName = textChannelName
     this.lastUpdatedAt = new Date()
+    this.guildCreatedAt = new Date()
   }
 }
 

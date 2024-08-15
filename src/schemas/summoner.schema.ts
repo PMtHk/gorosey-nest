@@ -12,6 +12,12 @@ export class Summoner {
   summonerId: string
 
   @Prop()
+  gameName: string
+
+  @Prop()
+  tagLine: string
+
+  @Prop()
   profileIconId: number
 
   @Prop()
@@ -23,12 +29,16 @@ export class Summoner {
   constructor(
     riotPuuid: string,
     summonerId: string,
+    gameName: string,
+    tagLine: string,
     profileIconId: number,
     revisionDate: number,
     summonerLevel: number,
   ) {
     this.riotPuuid = riotPuuid
     this.summonerId = summonerId
+    this.gameName = gameName
+    this.tagLine = tagLine
     this.profileIconId = profileIconId
     this.revisionDate = revisionDate
     this.summonerLevel = summonerLevel

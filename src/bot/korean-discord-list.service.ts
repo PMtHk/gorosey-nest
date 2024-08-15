@@ -9,6 +9,7 @@ export class KoreanDiscordListService {
     const DISCORD_APPLICATION_ID = this.configService.get<string>(
       'DISCORD_APPLICATION_ID',
     )
+
     const KDL_TOKEN = this.configService.get<string>(
       'KOERAN_DISCORD_LIST_TOKEN',
     )
