@@ -18,7 +18,7 @@ export class RiotApiService {
   async getAccount(
     gameName: string,
     tagLine: string,
-    region: AccountRegion = AccountRegion.ASIA,
+    region: AccountRegion,
   ): Promise<{
     puuid: string
     gameName: string

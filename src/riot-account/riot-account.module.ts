@@ -15,5 +15,6 @@ import { RiotApiModule } from 'src/riot-api/riot-api.module'
     RiotApiModule,
   ],
   providers: [RiotAccountService],
+  exports: [RiotAccountService],
 })
 export class RiotAccountModule {}

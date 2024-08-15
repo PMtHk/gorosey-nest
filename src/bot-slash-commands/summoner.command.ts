@@ -8,8 +8,8 @@ import {
   Interaction,
 } from 'discord.js'
 import { SummonerDto } from './summoner.dto'
-import { RiotApiService } from 'src/riot-api/riot-api.service'
 import { SummonerNotFoundEmbed } from './summoner.command.embeds'
+import { RiotAccountService } from 'src/riot-account/riot-account.service'
 
 const SummonerCommandOptions = {
   name: 'summoner',
@@ -26,7 +26,7 @@ const SummonerCommandOptions = {
 @Command(SummonerCommandOptions)
 @Injectable()
 export class SummonerCommand {
-  constructor(private readonly riotApiService: RiotApiService) {}
+  constructor(private readonly riotAccountService: RiotAccountService) {}
 
   @Handler()
   async onSummoner(
@@ -36,7 +36,7 @@ export class SummonerCommand {
     const locale = interaction.locale as Locale
     const [rawGameName, rawTagLine = 'KR1'] = summonerDto.summoner.split('#')
 
-    const account = await this.riotApiService.getAccount(
+    const account = await this.riotAccountService.getAccount(
       rawGameName,
       rawTagLine,
     )
@@ -49,9 +49,9 @@ export class SummonerCommand {
 
     const { puuid: riotPuuid, gameName, tagLine } = account
 
-    const summoner = await this.riotApiService.getSummoner(riotPuuid)
+    // const summoner = await this.riotApiService.getSummoner(riotPuuid)
 
-    console.log(summoner)
+    // console.log(summoner)
 
     const embed = new EmbedBuilder()
       .setTitle(`${gameName}#${tagLine}`)
